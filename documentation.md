@@ -257,7 +257,7 @@ Response body ( 400 ) -
     }
 }
 ```
-### get/allpost
+### GET/allpost
 Request body - 
 ```
 {
@@ -289,7 +289,7 @@ Response body ( 400 ) -
 ```
 
 
-### get/mypost:
+### GET/mypost:
 Request body - 
 ```
 {
@@ -318,7 +318,7 @@ Response body ( 400 ) -
 }
 ```
 
-### get/userprofile:id
+### GET/userprofile:id
 Request body - 
 ```
 {
@@ -333,7 +333,7 @@ Response body ( 200 ) -
     body:string,
 }
 ```
-### put/update-profile
+### PUT/update-profile
 Request body - 
 ```
 {
