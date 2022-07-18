@@ -107,7 +107,32 @@
     },
 }
 ```
+### profile schema
 
+```
+{
+    email: string,
+    name: string,
+    mobile: string,
+    country:string,
+    Dob:string,
+    description:string,
+    photo:buffer,
+    hobbies:string,
+    connections:links,
+
+
+}
+```
+​
+### reset schema
+```
+{
+    email:string,
+    password:string//must greater than 8
+    phone:string,
+}
+```
 ​
 
 ​
@@ -118,7 +143,7 @@
 ​
 ### User Routes
 ​
-1) ### POST /user/signup
+### 1) POST /user/signup
 ​
 Request body - 
 ```
@@ -134,6 +159,8 @@ Response body ( 200 ) -
         email: string,
         name: string,
         mobile: string,
+        userid:ObjectId,
+        
     }
 }
 ```
@@ -227,6 +254,179 @@ Response body ( 400 ) -
     error: {
         id: object_id, // id should match the freinds id 
         name:string
+    }
+}
+```
+### get/allpost
+Request body - 
+```
+{
+    id:object_id,(required)
+    name: string, (required)
+    title:string,
+    body:string,
+}
+```
+Response body ( 200 ) - 
+```
+{
+    allposts: {
+        id:Object_Id,
+        name: string,
+        comment:string,
+        type:like/dislike
+    }
+}
+```
+Response body ( 400 ) - 
+```
+{
+    error: {
+        id: object_id, //not found, check connection
+        name:string,
+    }
+}
+```
+
+
+### get/mypost:
+Request body - 
+```
+{
+    id:object_id,(required)
+    name: string, (required)
+}
+```
+Response body ( 200 ) - 
+```
+{
+    myposts: {
+        id:Object_Id,
+        name: string,
+        comment:string,
+        type:like/dislike
+    }
+}
+```
+Response body ( 400 ) - 
+```
+{
+    error: {
+        id: object_id, //no posts yet
+        name:string,
+    }
+}
+```
+
+### get/userprofile:id
+Request body - 
+```
+{
+    id:object_id,(required)
+    name: string, (required)
+}
+```
+Response body ( 200 ) - 
+```
+{
+    name:string,
+    body:string,
+}
+```
+### put/update-profile
+Request body - 
+```
+{
+    id:object_id,(required)
+    name: string, 
+}
+```
+Response body ( 200 ) - 
+```
+{
+    userid:objectId,//user details
+    title:string,
+    body:string,
+}
+```
+### DELETE/deletepost/:postid
+Request body-
+```
+      {
+        postid:ObjectId,
+        name: string,
+        required: true, // mandatory
+        description: string 
+        }
+```
+Response body ( 200 ) - 
+```
+{
+    userid:objectId,
+}
+```
+Response body ( 400 ) - 
+```
+{
+    error: {
+        id: object_id, //not found, should match with correct id
+        name:string,
+    }
+}
+```
+
+### POST/reset-pwd:
+Request body-
+```
+      {
+        name: string,
+        userid:objectid,
+        required: true, // mandatory
+        password:string,
+        email:string, 
+        }
+```
+Response body ( 200 ) - 
+```
+{
+    userDetails: {
+        email: string,
+        name: string,
+        mobile: string,
+        userid:ObjectId,
+        
+    }
+}
+```
+Response body ( 400 ) - 
+```
+{
+    error: {
+        id: object_id, //not found, should match with correct userid
+        name:string,
+    }
+}
+```
+### POST/new-pwd:
+Request body-
+```
+      {
+        required: true, // mandatory
+        password:string(must >8),
+        email:string, 
+        }
+```
+Response body ( 200 ) - 
+```
+{
+    password:string,
+}
+```
+Response body ( 400 ) - 
+```
+{
+    error: { 
+        name:string,
     }
 }
 ```
